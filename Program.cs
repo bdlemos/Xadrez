@@ -5,16 +5,19 @@ namespace xadrez{
     class Program{
         static void Main(){
             try{
-                Tabuleiro tab = new Tabuleiro(8,8);
-                
-                tab.colocarPeca(new Torre(tab, Cor.Preta),new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta),new Posicao(1, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Preta),new Posicao(0, 4));
-                
-                PosicaoXadrez pos =  new PosicaoXadrez('h', 1);
-                tab.colocarPeca(new Rei(tab, Cor.Branca), pos.toPosicao());
-                
-                Tela.imprimirTabuleiro(tab);
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+                while (!partida.terminada){
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
+                    
+                    System.Console.Write("Origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                    System.Console.Write("Destino: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                    
+                    partida.executaMovimento(origem, destino);
+                }
+
             }
             catch(TabuleiroException e){
                 System.Console.WriteLine(e.Message);
