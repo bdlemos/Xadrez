@@ -10,12 +10,13 @@ namespace xadrez{
 
                     try{
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.tab);
+                        Tela.imprimirPartida(partida);
+                        /*Tela.imprimirTabuleiro(partida.tab);
                         System.Console.WriteLine();
                         System.Console.WriteLine("Turno: " + partida.turno);
                         System.Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                        System.Console.WriteLine();*/
                         System.Console.WriteLine();
-                        
                         System.Console.Write("Origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoOrigem(origem);
