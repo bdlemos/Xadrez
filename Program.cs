@@ -7,21 +7,34 @@ namespace xadrez{
             try{
                 PartidaDeXadrez partida = new PartidaDeXadrez();
                 while (!partida.terminada){
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab);
-                    
-                    System.Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
-                    Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+                    try{
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab);
+                        System.Console.WriteLine();
+                        System.Console.WriteLine("Turno: " + partida.turno);
+                        System.Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                        System.Console.WriteLine();
+                        
+                        System.Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoOrigem(origem);
+                        
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
-                    System.Console.Write("Destino: ");
-                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                    
-                    partida.executaMovimento(origem, destino);
+                        Console.Clear();
+                        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+
+                        System.Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeDestino(origem, destino);
+                        
+                        partida.realizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e){
+                        System.Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
 
             }
