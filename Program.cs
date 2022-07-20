@@ -11,11 +11,6 @@ namespace xadrez{
                     try{
                         Console.Clear();
                         Tela.imprimirPartida(partida);
-                        /*Tela.imprimirTabuleiro(partida.tab);
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("Turno: " + partida.turno);
-                        System.Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
-                        System.Console.WriteLine();*/
                         System.Console.WriteLine();
                         System.Console.Write("Origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
@@ -37,7 +32,8 @@ namespace xadrez{
                         Console.ReadLine();
                     }
                 }
-
+                Console.Clear();
+                Tela.imprimirPartida(partida);
             }
             catch(TabuleiroException e){
                 System.Console.WriteLine(e.Message);
